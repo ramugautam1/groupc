@@ -1,5 +1,7 @@
 package com.vastika.groupc.dao;
 
+import java.util.List;
+
 import com.vastika.groupc.model.Customer;
 
 public class ProjectDaoImpl implements ProjectDao{
@@ -29,15 +31,27 @@ public class ProjectDaoImpl implements ProjectDao{
 	}
 
 	@Override
-	public double openAccount(Customer customer) {
+	public int openAccount(Customer customer) {
 		// Open account, update both tables
 		return 0;
 	}
 
 	@Override
-	public int checkCustomer(long id, String unique_id_type) {
+	public boolean verifyCustomer(long id, String password) {
 		// check if the customer already has an account or not
-		return 0;
+		return true;
+	}
+
+	@Override
+	public List<Double> getTransactions(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean doesExist(long id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	
