@@ -8,7 +8,7 @@ public class Customer {
 	private String account_name;
 	private String address;
 	private long mobile_no;
-	private double balance;
+//	private double balance;
 	
 
 	public long getId() {
@@ -23,7 +23,7 @@ public class Customer {
 		return unique_id_type;
 	}
 
-	public void uique_id_type(String unique_id_type) {
+	public void setUnique_id_type(String unique_id_type) {
 		this.unique_id_type = unique_id_type;
 	}
 
@@ -51,9 +51,9 @@ public class Customer {
 		this.mobile_no = mobile_no;
 	}
 
-	public double getBalance() {
-		return balance;
-	}
+//	public double getBalance() {
+//		return balance;
+//	}
 	
 
 	

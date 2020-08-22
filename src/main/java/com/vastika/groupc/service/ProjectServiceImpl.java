@@ -36,14 +36,13 @@ public class ProjectServiceImpl implements ProjectService{
 
 	@Override
 	public int openAccount(Customer customer) {
-		// TODO Auto-generated method stub
-		return 0;
+		return projectDao.openAccount(customer);
 	}
 
 	@Override
 	public boolean verifyCustomer(long id, String password) {
-		// TODO Auto-generated method stub
-		return true;
+		
+		return projectDao.verifyCustomer(id, password);
 	}
 
 	@Override

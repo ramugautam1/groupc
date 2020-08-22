@@ -15,6 +15,7 @@ public class Main {
 			System.out.println("Select\n 1---> Open Account\n 2---> Already have an account ");
 
 			int selection = scanner.nextInt();
+			scanner.nextLine();
 			
 			switch (selection) {	
 			
@@ -25,6 +26,7 @@ public class Main {
 			case 2:
 				pController.serveCustomer(scanner);
 				break;
+				
 			default:
 				System.out.println("wrong choice !!!");
 				break;
