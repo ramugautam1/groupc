@@ -14,12 +14,49 @@ public class ProjectController {
 //------------------------------------------------------------------------------------------------------------------------//	
 
 	public void openAccount(Scanner scanner) {
+		Customer customer= (Customer) getData(scanner);
+	
+		
+		if(!doesExist(customer.getId())) {
+			
+			int pw= projectService.openAccount(customer);
+			System.out.println("Account opened successfully. "
+					+ "Your initial password is [ "+ pw+" ]."
+					+ " Please Change your password ASAP to activate your account.");			
+			
+		}else {
+			System.out.println("Account already exits for this ID.");
+		}
+		
 		
 		//ask for id. call doesExist(long id) with id
 		//if checkCustomer returns false, continue to ask for more info 
 		//then call the openAccount() on ProjectService. 	
 		
 		
+	}
+	
+	public Customer getData(Scanner scanner) {
+		Customer tempCustomer= new Customer();
+			
+		System.out.println("Enter your id:");
+		tempCustomer.setId(scanner.nextLong());
+		
+		scanner.nextLine();
+		
+		System.out.println("Enter your id type:");
+		tempCustomer.setUnique_id_type(scanner.nextLine());
+		System.out.println("Enter account name:");
+		tempCustomer.setAccount_name(scanner.nextLine());
+		System.out.println("Enter Address: ");
+		tempCustomer.setAddress(scanner.nextLine());
+		System.out.println("Enter Mobile No.:");
+		tempCustomer.setMobile_no(scanner.nextLong());
+		scanner.nextLine();
+		
+		
+		
+		return tempCustomer;
 	}
 
 //------------------------------------------------------------------------------------------------------------------------//	
@@ -31,7 +68,7 @@ public class ProjectController {
 //------------------------------------------------------------------------------------------------------------------------//	
 	
 	public void deposit(long id, Scanner scanner) {
-
+		//Sandeep
 		
 	
 	}
@@ -39,6 +76,7 @@ public class ProjectController {
 //------------------------------------------------------------------------------------------------------------------------//	
 	
 	public void updateInfo(long id,Scanner scanner) {
+		//Rachana
 		System.out.println("Enter what you want to change: \n Password | Address | Mobile No ");
 		
 		//write logic
@@ -49,19 +87,21 @@ public class ProjectController {
 //------------------------------------------------------------------------------------------------------------------------//	
 	
 	public void withdraw(long id,Scanner scanner) {
-		
+		//Rajan
 	}
 	
 //------------------------------------------------------------------------------------------------------------------------//	
 
 	
 	public void checkBalance(long id) {
-		
+		//sabaijana le garne yo
 	}
 	
 //------------------------------------------------------------------------------------------------------------------------//	
 
 	public void getTransactions(long id) {
+		//Ram
+		//Get transactions of a particular customer
 		
 	}
 	
@@ -82,38 +122,49 @@ public class ProjectController {
 //------------------------------------------------------------------------------------------------------------------------//	
 	
 	public void serveCustomer(Scanner scanner) {
-		ProjectController pController = new ProjectController();
+		ProjectController projectController = new ProjectController();
 		System.out.println("Enter your ID to continue");
 		long id = scanner.nextLong();
 		scanner.nextLine();
 		System.out.println("Enter your Password");
 		String password = scanner.nextLine();
 
-		if (pController.verifyCustomer(id, password)) {
+		if (projectController.verifyCustomer(id, password)) {
+			
 			boolean flag = true;
 			while (flag) {
+				
 				printMenu();
+				
 				String choice = (""+ scanner.nextLine().charAt(0)).toLowerCase();
-				switch(choice) {
+				
+				switch(choice) {				
 				
 				case "d":
-					pController.deposit(id,scanner);
+					projectController.deposit(id,scanner);
 					break;
+				
 				case "w":
-					pController.withdraw(id,scanner);
+					projectController.withdraw(id,scanner);
 					break;
+					
 				case "c":
-					pController.checkBalance(id);
+					projectController.checkBalance(id);
 					break;
+				
 				case "u":
-					pController.updateInfo(id,scanner);
+					projectController.updateInfo(id,scanner);
 					break;
+				
 				case "t":
-					pController.getTransactions(id);
+					projectController.getTransactions(id);
+					break;
+					
 				case "q":
 					flag=false;
 					System.out.println("\n\t\t...Exiting...!");
 					break;
+				
 				default:
 					System.out.println("Wrong choice!");
 					break;			
@@ -130,4 +181,6 @@ public class ProjectController {
 	}
 //------------------------------------------------------------------------------------------------------------------------//	
 
+	
+	
 }
