@@ -11,56 +11,55 @@ public class ProjectController {
 	ProjectService projectService= new ProjectServiceImpl();
 	Customer customer= new Customer();
 	
-//------------------------------------------------------------------------------------------------------------------------//	
+	//---------------------------------BLOCK FOR OPENING NEW ACCOUNTS-----------------------------------------//	
 
-	public void openAccount(Scanner scanner) {
-		Customer customer= (Customer) getData(scanner);
-	
-		
-		if(!doesExist(customer.getId())) {
+		public void openAccount(Scanner scanner) {
+			Customer customer = (Customer) getData(scanner);
 			
-			int pw= projectService.openAccount(customer);
-			System.out.println("Account opened successfully. "
-					+ "Your initial password is [ "+ pw+" ]."
-					+ " Please Change your password ASAP to activate your account.");			
-			
-		}else {
-			System.out.println("Account already exits for this ID.");
+
+			if (!doesExist(customer.getId())) {
+
+				int pw = projectService.openAccount(customer);
+				System.out.println("Account opened successfully. " + "Your initial password is [ " + pw + " ]."
+						+ " Please Change your password ASAP to activate your account.");
+
+			} else {
+				System.out.println("!!!!!!!!!!Account already exits for this ID.!!!!!!!!!!");
+				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+			}
+
 		}
-		
-		
-		//ask for id. call doesExist(long id) with id
-		//if checkCustomer returns false, continue to ask for more info 
-		//then call the openAccount() on ProjectService. 	
-		
-		
-	}
-	
-	public Customer getData(Scanner scanner) {
-		Customer tempCustomer= new Customer();
-			
-		System.out.println("Enter your id:");
-		tempCustomer.setId(scanner.nextLong());
-		
-		scanner.nextLine();
-		
-		System.out.println("Enter your id type:");
-		tempCustomer.setUnique_id_type(scanner.nextLine());
-		System.out.println("Enter account name:");
-		tempCustomer.setAccount_name(scanner.nextLine());
-		System.out.println("Enter Address: ");
-		tempCustomer.setAddress(scanner.nextLine());
-		System.out.println("Enter Mobile No.:");
-		tempCustomer.setMobile_no(scanner.nextLong());
-		scanner.nextLine();
-		
-		
-		
-		return tempCustomer;
-	}
 
-//------------------------------------------------------------------------------------------------------------------------//	
-	
+		public Customer getData(Scanner scanner) {
+			
+			Customer tempCustomer = new Customer();
+	System.out.println("~~~~~~~~~~~~~~~~~Please provide the necesary info~~~~~~~~~~~~~~~~~~");
+
+			System.out.println("Enter your id:");
+			tempCustomer.setId(scanner.nextLong());
+
+			scanner.nextLine();
+
+			System.out.println("Enter your id type:");
+			tempCustomer.setUnique_id_type(scanner.nextLine());
+			System.out.println("Enter account name:");
+			tempCustomer.setAccount_name(scanner.nextLine());
+			System.out.println("Enter Address: ");
+			tempCustomer.setAddress(scanner.nextLine());
+			System.out.println("Enter Mobile No.:");
+			tempCustomer.setMobile_no(scanner.nextLong());
+			scanner.nextLine();
+			
+			System.out.println("\nProcessing......\n");
+			
+	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+			return tempCustomer;
+		}
+
+	//------------------------------------------------------------------------------------------------------------------------//	
+
 	public boolean doesExist(long id) {
 		return projectService.doesExist(id);
 	}
@@ -119,68 +118,74 @@ public class ProjectController {
 	
 	
 
-//------------------------------------------------------------------------------------------------------------------------//	
-	
-	public void serveCustomer(Scanner scanner) {
-		ProjectController projectController = new ProjectController();
-		System.out.println("Enter your ID to continue");
-		long id = scanner.nextLong();
-		scanner.nextLine();
-		System.out.println("Enter your Password");
-		String password = scanner.nextLine();
+	//------------------------------BLOCK FOR HANDLING EXISTING CUSTOMERS--------------------------------------//	
 
-		if (projectController.verifyCustomer(id, password)) {
-			
-			boolean flag = true;
-			while (flag) {
-				
-				printMenu();
-				
-				String choice = (""+ scanner.nextLine().charAt(0)).toLowerCase();
-				
-				switch(choice) {				
-				
-				case "d":
-					projectController.deposit(id,scanner);
-					break;
-				
-				case "w":
-					projectController.withdraw(id,scanner);
-					break;
-					
-				case "c":
-					projectController.checkBalance(id);
-					break;
-				
-				case "u":
-					projectController.updateInfo(id,scanner);
-					break;
-				
-				case "t":
-					projectController.getTransactions(id);
-					break;
-					
-				case "q":
-					flag=false;
-					System.out.println("\n\t\t...Exiting...!");
-					break;
-				
-				default:
-					System.out.println("Wrong choice!");
-					break;			
-				
+		public void serveCustomer(Scanner scanner) {
+			ProjectController projectController = new ProjectController();
+			System.out.println("Enter your ID to continue");
+			long id = scanner.nextLong();
+			scanner.nextLine();
+			System.out.println("Enter your Password");
+			String password = scanner.nextLine();
+
+			if (projectController.verifyCustomer(id, password)) {
+
+				boolean flag = true;
+				while (flag) {
+
+					printMenu();
+
+					String choice = ("" + scanner.nextLine().charAt(0)).toLowerCase();
+
+					switch (choice) {
+
+					case "d":
+						projectController.deposit(id, scanner);
+						scanner.nextLine();
+						break;
+
+					case "w":
+						projectController.withdraw(id, scanner);
+						scanner.nextLine();
+						break;
+
+					case "c":
+						projectController.checkBalance(id);
+						break;
+
+					case "u":
+						projectController.updateInfo(id, scanner);
+						break;
+
+					case "t":
+						projectController.getTransactions(id);
+						break;
+
+					case "q":
+						flag = false;
+						System.out.println("\n\t\t...Exiting...!");
+						break;
+
+					default:
+						System.out.println("Wrong choice!");
+						break;
+
+					}
 				}
+
+			}else {
+				System.out.println("\nID and Password didn't match. Try again later.\n");
 			}
-
 		}
-	}
-	
-	public static void printMenu() {
-		System.out.println("\n\t\t\tWHAT NEXT?");
-		System.out.println("\n Deposit | Withdraw | Check Balance | Update Info | Transaction-History | Quit ");
-	}
-//------------------------------------------------------------------------------------------------------------------------//	
 
+		public static void printMenu() {
+			System.out.println(" \n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~WHAT NEXT?~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+			System.out.println("|          |          |               |             |                     |      |");
+			System.out.println("| Deposit  | Withdraw | Check Balance | Update Info | Transaction-History | Quit |");
+			System.out.println("|          |          |               |             |                     |      |");
+			System.out.println(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		}
+	//----------
 	
 	
 }

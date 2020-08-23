@@ -8,7 +8,7 @@ public class Customer {
 	private String account_name;
 	private String address;
 	private long mobile_no;
-//	private double balance;
+	private String password;
 	
 
 	public long getId() {
@@ -51,9 +51,15 @@ public class Customer {
 		this.mobile_no = mobile_no;
 	}
 
-//	public double getBalance() {
-//		return balance;
-//	}
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	
 	
 
 	
