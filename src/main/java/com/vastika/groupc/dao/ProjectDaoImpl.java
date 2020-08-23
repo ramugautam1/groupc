@@ -25,8 +25,7 @@ public class ProjectDaoImpl implements ProjectDao{
 	
 	private static final String UPDATE_INFO_SQL="";
 	private static final String VERIFY_CUSTOMER_SQL="select count(id) from account_info_tbl where id=? and password=?";
-	private static final String DOES_EXIST_SQL="select id from account_info_tbl where id=?";
-	private static final String GET_TRANSACTIONS_SQL="select id from account_info_tbl where id=?";
+	private static final String DOES_EXIST_SQL = "select id from account_info_tbl where id=?";	private static final String GET_TRANSACTIONS_SQL="select id from account_info_tbl where id=?";
 	
 	
 //============================================================================================================================
@@ -144,23 +143,25 @@ public class ProjectDaoImpl implements ProjectDao{
 
 	@Override
 	public boolean doesExist(long id) {
-		try(Connection connection = DBUtil.getConnection();
-				PreparedStatement ps= connection.prepareStatement(DOES_EXIST_SQL);
-			){
-			ResultSet resultSet= ps.executeQuery();
-			
-			if(resultSet.getLong("id")==id) {
+		try (Connection connection = DBUtil.getConnection();
+				PreparedStatement ps = connection.prepareStatement(DOES_EXIST_SQL);) {
+			ps.setLong(1, id);
+
+			ResultSet resultSet = ps.executeQuery();
+
+			if (resultSet.next()) {
 				return true;
+
+			} else {
+				return false;
 			}
-			
-				
-			
+
 		} catch (ClassNotFoundException | SQLException e) {
-			
+			e.printStackTrace();
+			return true;
 		}
-		return false;
+
 	}
-	
 	
 
 }

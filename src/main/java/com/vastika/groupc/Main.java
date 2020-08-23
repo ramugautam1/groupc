@@ -11,9 +11,9 @@ public class Main {
 		ProjectController pController = new ProjectController();
 
 		while (true) {
-
-			System.out.println("Select\n 1---> Open Account\n 2---> Already have an account ");
-
+			System.out.println("\n\n-------------------Select option to proceed--------------------------");
+			System.out.println("    1---> Open Account\t\t|\t2---> Already have an account  ");
+				System.out.println("---------------------------------------------------------------------");
 			int selection = scanner.nextInt();
 			scanner.nextLine();
 			
@@ -34,7 +34,6 @@ public class Main {
 		}
 
 	}
-
 
 
 }
