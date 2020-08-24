@@ -11,9 +11,8 @@ public class ProjectServiceImpl implements ProjectService{
 	ProjectDao projectDao= new ProjectDaoImpl();
 
 	@Override
-	public int updateInfo(Customer customer) {
-		// TODO Auto-generated method stub
-		return 0;
+	public String updateInfo(Customer customer) {
+		return projectDao.updateInfo(customer);
 	}
 
 	@Override

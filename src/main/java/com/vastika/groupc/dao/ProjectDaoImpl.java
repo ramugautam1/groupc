@@ -33,8 +33,7 @@ public class ProjectDaoImpl implements ProjectDao{
 	//update password, address, mobile_no in account_info_tbl
 	
 	@Override
-	public int updateInfo(Customer customer) {
-		// TODO Auto-generated method stub
+	public String updateInfo(Customer customer) {
 		return 0;
 	}
 //============================================================================================================================
